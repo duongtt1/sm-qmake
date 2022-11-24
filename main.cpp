@@ -8,7 +8,7 @@
 #include "action.h"
 #include "user.h"
 #include "storeclass.h"
-
+#include "dsocketclient.h"
 
 
 int main(int argc, char *argv[])
@@ -25,11 +25,13 @@ int main(int argc, char *argv[])
     User obj_User;
     StoreClass obj_store_class;
     Action obj_action;
+    DSocketClient obj_dsk;
 
     //! register engine cpp
     engine.rootContext()->setContextProperty("User", &obj_User);
     engine.rootContext()->setContextProperty("StoreClass", &obj_store_class);
     engine.rootContext()->setContextProperty("ActionClass", &obj_action);
+    engine.rootContext()->setContextProperty("DSocket", &obj_dsk);
     const QUrl url(QStringLiteral("qrc:/main.qml"));
 
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

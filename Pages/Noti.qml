@@ -3,7 +3,19 @@ import QtQuick 2.0
 Item {
     property var arr_notifications: []
 
+    Connections {
+        target: DSocket
+        onHelloSignal: {
+            console.log("qml: socket hello")
+        }
+    }
+
     Rectangle {
+
+        Component.onCompleted: {
+            DSocket.connect_to_server();
+        }
+
         id: rectangle
         x: 0
         y: 0

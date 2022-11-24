@@ -67,5 +67,6 @@
         <file>Components/example.pdf</file>
         <file>Resources/icon/open.png</file>
         <file>Resources/icon/pdf.png</file>
+        <file>Resources/icon/icons8-live-video-on.gif</file>
     </qresource>
 </RCC>

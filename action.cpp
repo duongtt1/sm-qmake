@@ -8,9 +8,9 @@ Action::Action(QObject *parent)
 }
 
 void Action::openPDF(){
-    system("C:\\Users\\duong\\AppData\\Local\\SumatraPDF\\SumatraPDF.exe C:\\Users\\duong\\AppData\\Local\\SumatraPDF\\example.pdf -presentation -zoom 200");
+    system("evince ~/example.pdf"); // evince example.pdf
 }
 
 void Action::openMeeting(){
-    system("C:\\Program^ Files\\Google\\Chrome\\Application\\chrome.exe --start-fullscreen --app=https://meet.jit.si/IT001");
+    system("chromium-browser --start-fullscreen --app=https://meet.jit.si/IT001");
 }

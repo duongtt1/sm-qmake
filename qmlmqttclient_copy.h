@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QtCore/qmap.h>
-//#include
+#include <sio_socket.h>
 
 class QmlMqttClient
 {

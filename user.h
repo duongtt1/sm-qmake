@@ -7,8 +7,8 @@
 class User : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString username READ username WRITE setUsername NOTIFY usernameChanged);
-    Q_PROPERTY(QString fullname READ fullname WRITE setFullname NOTIFY fullnameChanged);
+    Q_PROPERTY(QString username READ username WRITE setUsername NOTIFY usernameChanged)
+    Q_PROPERTY(QString fullname READ fullname WRITE setFullname NOTIFY fullnameChanged)
     Q_PROPERTY(QString email READ email WRITE setEmail NOTIFY emailChanged)
     Q_PROPERTY(QString dayofbirth READ dayofbirth WRITE setDayofbirth NOTIFY dayofbirthChanged)
     Q_PROPERTY(QString gender READ gender WRITE setGender NOTIFY genderChanged)
@@ -57,7 +57,7 @@ public:
 
 //    Q_INVOKABLE void setDataUser();
 
-signals:
+Q_SIGNALS:
     void usernameChanged();
     void fullnameChanged();
     void emailChanged();

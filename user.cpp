@@ -13,7 +13,7 @@ QString User::username(){
 void User::setUsername(const QString &data){
     this->m_username = data;
 //    qDebug() >> this->m_username;
-    emit usernameChanged();
+    Q_EMIT usernameChanged();
 }
 
 QString User::fullname(){
@@ -22,7 +22,7 @@ QString User::fullname(){
 
 void User::setFullname(const QString &data){
     this->m_fullname = data;
-    emit fullnameChanged();
+    Q_EMIT fullnameChanged();
 }
 
 QString User::email(){
@@ -31,7 +31,7 @@ QString User::email(){
 
 void User::setEmail(const QString &data){
     this->m_email = data;
-    emit emailChanged();
+    Q_EMIT emailChanged();
 }
 
 QString User::dayofbirth(){
@@ -40,7 +40,7 @@ QString User::dayofbirth(){
 
 void User::setDayofbirth(const QString &data){
     this->m_dayofbirth = data;
-    emit dayofbirthChanged();
+    Q_EMIT dayofbirthChanged();
 }
 
 QString User::gender(){
@@ -49,7 +49,7 @@ QString User::gender(){
 
 void User::setGender(const QString &data){
     this->m_gender = data;
-    emit genderChanged();
+    Q_EMIT genderChanged();
 }
 
 QString User::icNumber(){
@@ -58,7 +58,7 @@ QString User::icNumber(){
 
 void User::setIcNumber(const QString &data){
     this->m_icNumber = data;
-    emit icNumberChanged();
+    Q_EMIT icNumberChanged();
 }
 
 QString User::telephone(){
@@ -67,7 +67,7 @@ QString User::telephone(){
 
 void User::setTelephone(const QString &data){
     this->m_telephone = data;
-    emit telephoneChanged();
+    Q_EMIT telephoneChanged();
 }
 
 QString User::avatar(){
@@ -76,7 +76,7 @@ QString User::avatar(){
 
 void User::setAvatar(const QString &data){
     this->m_avatar = data;
-    emit avatarChanged();
+    Q_EMIT avatarChanged();
 }
 
 QString User::classUser(){

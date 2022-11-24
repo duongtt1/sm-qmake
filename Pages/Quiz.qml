@@ -7,66 +7,49 @@ Item {
     height: 600
 
 
+
+
     property int q_answer: 0
     property string time_display: ""
     property int i_timer: 900
     property int idx_quetions: 1
     property string nametask: "BT1"
-    property var arr_idx: ListModel {
-        ListElement{
-            idx: "1"
-        }
-        ListElement{
-            idx: "2"
-        }
-        ListElement{
-            idx: "3"
-        }
-        ListElement{
-            idx: "4"
-        }
-        ListElement{
-            idx: "5"
-        }
-    }
-
-    property var arr_quetions: [{
-            "id":"1",
+    property var idtask: ""
+    property var arr_idx: ListModel {}
+    property var arr_quetions: [ {
+            "qid": "1",
             "quetions": "Ngôn ngữ lập trình C được Dennish phát triển dựa trên ngôn ngữ lập trình \n nào?",
             "a": "Ngôn ngữ DEC PDP",
             "b": "Ngôn ngữ C",
             "c": "Ngôn ngữ D",
             "d": "Ngôn ngữ A"
-        },{
-            "id":"2",
-            "quetions": "Cách khai báo biến nào sau đây là đúng?",
-            "a": "int: x, y, z",
-            "b": "x, y, z: float",
-            "c": "double x, y, z;",
-            "d": "x = 0, y = 1, z = 2;"
-        },{
-            "id":"3",
-            "quetions": "Cách nào sau đây là chính xác khi so sánh giá trị của 2 biến?",
-            "a": "x >= y",
-            "b": "x - y",
-            "c": "x << y",
-            "d": "x += y"
-        },{
-            "id":"4",
-            "quetions": "Cách viết nào sau đây là đúng với cú pháp khai báo của câu lệnh if?",
-            "a": "if biểu_thức",
-            "b": "if <biểu thức>",
-            "c": "if {biểu thức}",
-            "d": "if (biểu thức)"
-        },{
-            "id":"5",
-            "quetions": "Lệnh cout trong C++ có tác dụng gì?",
-            "a": "Là stream đầu ra chuẩn trong C++.",
-            "b": "Là lệnh chú thích trong C++",
-            "c": "Là stream đầu vào chuẩn của C++.",
-            "d": " Là stream đầu vào chuẩn của C++."
         }]
     property var result: []
+
+    Component.onCompleted: {
+        var xmlhttp = new XMLHttpRequest();
+        var url = "http://localhost:4000/api/v1/task/" + User.icNumber;
+        xmlhttp.onreadystatechange=function() {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                var obj = JSON.parse(xmlhttp.responseText);
+                if (obj["success"]){
+                    nametask = obj["data"][0]["nametask"]
+                    idtask = obj["data"][0]["idtask"]
+                    arr_quetions = obj["data"][0]["arrquetions"]
+                    arr_idx.clear();
+                    for(var i=1; i<obj["data"][0]["arrquetions"].length+1;i++){
+                        arr_idx.append({ "idx": i, "enable":false})
+                    }
+                    for(var j=1;j<obj["data"][0]["arrquetions"].length+1;++j){
+                        result.push("")
+                    }
+                }
+            }
+        }
+        xmlhttp.open("POST", url, true);
+        xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xmlhttp.send();
+    }
 
     Rectangle {
         id: rectangle
@@ -168,7 +151,7 @@ Item {
             Rectangle {
                 width: 32
                 height: 32
-                color: "#ffffff"
+                color: enable === false ? "#ffffff" : "#1976d2"
                 radius: 10
                 border.color: "#1976d2"
                 Label {
@@ -180,12 +163,23 @@ Item {
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     font.pointSize: 14
+                    color: enable === false ? "#000000" : "#ffffff"
                     font.bold: true
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
                             idx_quetions = idx
-                            q_answer = 0
+                            if (result[idx_quetions] === "a"){
+                                q_answer = 1;
+                            }else if (result[idx_quetions] === "b"){
+                                q_answer = 2;
+                            }else if (result[idx_quetions] === "c"){
+                                q_answer = 3;
+                            }else if (result[idx_quetions] === "d"){
+                                q_answer = 4;
+                            }else{
+                                q_answer = 0;
+                            }
                         }
                     }
                 }
@@ -212,6 +206,7 @@ Item {
                 y: 8
                 cellWidth: 53
                 cellHeight: 53
+
                 model: arr_idx
                 delegate: com_number
             }
@@ -272,6 +267,30 @@ Item {
                 font.bold: true
                 font.pointSize: 15
             }
+            MouseArea {
+                onClicked: {
+                    var xmlhttp = new XMLHttpRequest();
+                    var url = "http://localhost:4000/api/v1/task/submittask";
+
+                    const json_post = {
+                        "icnumber":User.icNumber,
+                        "idtask": idtask,
+                        "answer": result,
+                    }
+
+                    xmlhttp.onreadystatechange=function() {
+                        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                            var obj = JSON.parse(xmlhttp.responseText);
+                            if (obj["success"]){
+
+                            }
+                        }
+                    }
+                    xmlhttp.open("PUT", url, true);
+                    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                    xmlhttp.send(JSON.stringify(json_post));
+                }
+            }
         }
     }
 
@@ -291,7 +310,7 @@ Item {
             width: 699
             height: 38
             color: "#1976d2"
-            text: qsTr("Quetions: " + arr_quetions[idx_quetions-1]["id"])
+            text: qsTr("Quetions: " + arr_quetions[idx_quetions-1]["qid"])
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
             font.bold: true
@@ -376,6 +395,8 @@ Item {
                         anchors.fill: parent
                         onClicked: {
                             q_answer = 3;
+                            result[idx_quetions]="c"
+                            arr_idx.set(idx_quetions-1, {"idx":idx_quetions, "enable":true})
                         }
                     }
                 }
@@ -419,6 +440,8 @@ Item {
                         anchors.fill: parent
                         onClicked: {
                             q_answer = 2;
+                            result[idx_quetions]="b"
+                            arr_idx.set(idx_quetions-1, {"idx":idx_quetions, "enable":true})
                         }
                     }
                 }
@@ -463,6 +486,8 @@ Item {
                         anchors.fill: parent
                         onClicked: {
                             q_answer = 1;
+                            result[idx_quetions]="a"
+                            arr_idx.set(idx_quetions-1, {"idx":idx_quetions, "enable":true})
                         }
                     }
                 }
@@ -506,6 +531,8 @@ Item {
                         anchors.fill: parent
                         onClicked: {
                             q_answer = 4;
+                            result[idx_quetions]="d"
+                            arr_idx.set(idx_quetions-1, {"idx":idx_quetions, "enable":true})
                         }
                     }
                 }

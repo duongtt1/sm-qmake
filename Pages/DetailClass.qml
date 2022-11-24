@@ -6,9 +6,15 @@ Item {
     property string nameClass: ""
     property string idClass: ""
     property string nameTeacher: ""
+    property var classislive: false
 //    property var arr_members: []
 
-
+    Connections {
+        target: DSocket
+        onStartClassSignal: {
+            classislive = true
+        }
+    }
 
     Column {
         id: main
@@ -274,23 +280,28 @@ Item {
             target: ActionClass
         }
 
-        Image {
-            id: image
-            x: 68
-            y: 383
-            width: 100
-            height: 100
-            source: "../Resources/icon/video-call.png"
-            fillMode: Image.PreserveAspectFit
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    ActionClass.openMeeting()
+
+            AnimatedImage {
+                id: icon_videocall
+                x: 914
+                y: 492
+                width: 100
+                height: 100
+                visible: classislive === true ? true : false
+                source: "../Resources/icon/icons8-live-video-on.gif"
+                fillMode: Image.PreserveAspectFit
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        ActionClass.openMeeting()
+                    }
                 }
             }
-        }
 
         Component.onCompleted: {
+
+            DSocket.connect_to_server();
+
             var xmlhttp = new XMLHttpRequest();
             var url = "http://localhost:4000/api/v1/classroom/" + User.icNumber;
             xmlhttp.onreadystatechange=function() {
