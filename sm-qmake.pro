@@ -1,6 +1,7 @@
 QT += quick  qml webengine
 CONFIG += c++11
 CONFIG += no_keywords
+#CONFIG += fopenmp pthread
 
 
 # The following define makes your compiler emit warnings if you use
@@ -8,7 +9,7 @@ CONFIG += no_keywords
 # depend on your compiler). Refer to the documentation for the
 # deprecated API to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
-
+QMAKE_CXXFLAGS += -pthread -fopenmp
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
@@ -19,7 +20,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #LIBS += -L"./3rdParty/qmqtt/src/mqtt"
 
 SOURCES += \
+        ImgProvider/opencvimageprovider.cpp \
+        ImgProvider/videostreamer.cpp \
         action.cpp \
+        arcface/arcface.cpp \
+        arcface/base.cpp \
+        arcface/mtcnn.cpp \
         dsocketclient.cpp \
         main.cpp \
         storeclass.cpp \
@@ -42,8 +48,25 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    ImgProvider/opencvimageprovider.h \
+    ImgProvider/videostreamer.h \
     action.h \
+    arcface/arcface.h \
+    arcface/base.h \
+    arcface/mtcnn.h \
     dsocketclient.h \
+    ncnn/include/benchmark.h \
+    ncnn/include/blob.h \
+    ncnn/include/cpu.h \
+    ncnn/include/layer.h \
+    ncnn/include/layer_type.h \
+    ncnn/include/layer_type_enum.h \
+    ncnn/include/mat.h \
+    ncnn/include/modelbin.h \
+    ncnn/include/net.h \
+    ncnn/include/opencv.h \
+    ncnn/include/paramdict.h \
+    ncnn/include/platform.h \
     storeclass.h \
     user.h
 
@@ -56,6 +79,12 @@ else:unix: LIBS += -L$$PWD/../../../../usr/local/lib/ -lsioclient
 INCLUDEPATH += $$PWD/../../../../usr/local/include
 DEPENDPATH += $$PWD/../../../../usr/local/include
 
+LIBS += /usr/local/lib/libopencv_*
+LIBS += -pthread -fopenmp
+INCLUDEPATH += /usr/local/include \
+               /usr/local/include/opencv4 \
+               /usr/local/include/opencv4/opencv2
+
 win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../../usr/local/lib/release/libsioclient.a
 else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../../usr/local/lib/debug/libsioclient.a
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../../usr/local/lib/release/sioclient.lib
@@ -63,4 +92,30 @@ else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../.
 else:unix: PRE_TARGETDEPS += $$PWD/../../../../usr/local/lib/libsioclient.a
 
 DISTFILES += \
-    Resources/icon/icons8-live-video-on.gif
+    Resources/icon/icons8-live-video-on.gif \
+    arcface/main \
+    models/det1.bin \
+    models/det1.param \
+    models/det2.bin \
+    models/det2.param \
+    models/det3.bin \
+    models/det3.param \
+    models/det4.bin \
+    models/det4.param \
+    models/mobilefacenet.bin \
+    models/mobilefacenet.param \
+    ncnn/lib/libncnn.a
+
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/ncnn/lib/release/ -lncnn
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/ncnn/lib/debug/ -lncnn
+else:unix: LIBS += -L$$PWD/ncnn/lib/ -lncnn
+
+INCLUDEPATH += $$PWD/ncnn/include
+DEPENDPATH += $$PWD/ncnn/include
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/ncnn/lib/release/libncnn.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/ncnn/lib/debug/libncnn.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/ncnn/lib/release/ncnn.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/ncnn/lib/debug/ncnn.lib
+else:unix: PRE_TARGETDEPS += $$PWD/ncnn/lib/libncnn.a

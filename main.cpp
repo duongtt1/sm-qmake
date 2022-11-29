@@ -9,7 +9,8 @@
 #include "user.h"
 #include "storeclass.h"
 #include "dsocketclient.h"
-
+#include "ImgProvider/videostreamer.h"
+#include "ImgProvider/opencvimageprovider.h"
 
 int main(int argc, char *argv[])
 {
@@ -26,12 +27,18 @@ int main(int argc, char *argv[])
     StoreClass obj_store_class;
     Action obj_action;
     DSocketClient obj_dsk;
+    VideoStreamer videoStreamer;
+    OpencvImageProvider *liveImageProvider(new OpencvImageProvider);
 
     //! register engine cpp
     engine.rootContext()->setContextProperty("User", &obj_User);
     engine.rootContext()->setContextProperty("StoreClass", &obj_store_class);
     engine.rootContext()->setContextProperty("ActionClass", &obj_action);
     engine.rootContext()->setContextProperty("DSocket", &obj_dsk);
+    engine.rootContext()->setContextProperty("VideoStreamer",&videoStreamer);
+    engine.rootContext()->setContextProperty("liveImageProvider",liveImageProvider);
+    engine.addImageProvider("live",liveImageProvider);
+
     const QUrl url(QStringLiteral("qrc:/main.qml"));
 
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
@@ -39,6 +46,9 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
+
+    QObject::connect(&videoStreamer,&VideoStreamer::newImage,liveImageProvider,&OpencvImageProvider::updateImage);
+    QObject::connect(&videoStreamer,&VideoStreamer::newAvatar,liveImageProvider,&OpencvImageProvider::updateAvatar);
 
     engine.load(url);
 

@@ -1,0 +1,44 @@
+#ifndef VIDEOSTREAMER_H
+#define VIDEOSTREAMER_H
+
+#include <QObject>
+#include <QTimer>
+#include <QImage>
+#include <iostream>
+#include <vector>
+#include <arcface/arcface.h>
+#include <arcface/mtcnn.h>
+#include <opencv4/opencv2/core.hpp>
+#include <opencv4/opencv2/opencv.hpp>
+#include <opencv4/opencv2/highgui.hpp>
+
+cv::Mat ncnn2cv(ncnn::Mat img);
+
+class VideoStreamer: public QObject
+{
+    Q_OBJECT
+public:
+    VideoStreamer();
+    ~VideoStreamer();
+    MtcnnDetector *ins_detector;
+    vector<FaceInfo> ins_face_result{};
+public:
+    void streamVideo();
+
+public Q_SLOTS:
+    void openVideoCamera();
+    void closeVideoCamera();
+
+private:
+    cv::Mat frame;
+    cv::VideoCapture cap;
+    QTimer tUpdate;
+    int check;
+
+Q_SIGNALS:
+    void loginSuccess();
+    void newImage(QImage &);
+    void newAvatar(QImage &);
+};
+
+#endif // VIDEOSTREAMER_H

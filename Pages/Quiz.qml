@@ -7,7 +7,9 @@ Item {
     height: 600
 
 
-
+    Connections {
+        target: DSocket
+    }
 
     property int q_answer: 0
     property string time_display: ""
@@ -169,13 +171,13 @@ Item {
                         anchors.fill: parent
                         onClicked: {
                             idx_quetions = idx
-                            if (result[idx_quetions] === "a"){
+                            if (result[idx_quetions-1] === "a"){
                                 q_answer = 1;
-                            }else if (result[idx_quetions] === "b"){
+                            }else if (result[idx_quetions-1] === "b"){
                                 q_answer = 2;
-                            }else if (result[idx_quetions] === "c"){
+                            }else if (result[idx_quetions-1] === "c"){
                                 q_answer = 3;
-                            }else if (result[idx_quetions] === "d"){
+                            }else if (result[idx_quetions-1] === "d"){
                                 q_answer = 4;
                             }else{
                                 q_answer = 0;
@@ -240,7 +242,7 @@ Item {
                 anchors.fill: parent
                 onClicked: {
                     main_stackview.replace('qrc:/Pages/DetailClass.qml');
-//                    loader_detail_class.source = "qrc:/Components/Assignments.qml"
+                    loader_detail_class.source = "qrc:/Components/Assignments.qml"
                 }
             }
         }
@@ -268,9 +270,11 @@ Item {
                 font.pointSize: 15
             }
             MouseArea {
+                anchors.fill: parent
                 onClicked: {
+                    console.log("aaaaaaaaaaa")
                     var xmlhttp = new XMLHttpRequest();
-                    var url = "http://localhost:4000/api/v1/task/submittask";
+                    var url = "http://localhost:4000/api/v1/task/";
 
                     const json_post = {
                         "icnumber":User.icNumber,
@@ -282,7 +286,9 @@ Item {
                         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                             var obj = JSON.parse(xmlhttp.responseText);
                             if (obj["success"]){
-
+                                DSocket.emitSubmmitTask();
+                                main_stackview.replace('qrc:/Pages/DetailClass.qml');
+//                                loader_detail_class.source = "qrc:/Components/Assignments.qml"
                             }
                         }
                     }
@@ -395,7 +401,7 @@ Item {
                         anchors.fill: parent
                         onClicked: {
                             q_answer = 3;
-                            result[idx_quetions]="c"
+                            result[idx_quetions-1]="c"
                             arr_idx.set(idx_quetions-1, {"idx":idx_quetions, "enable":true})
                         }
                     }
@@ -440,7 +446,7 @@ Item {
                         anchors.fill: parent
                         onClicked: {
                             q_answer = 2;
-                            result[idx_quetions]="b"
+                            result[idx_quetions-1]="b"
                             arr_idx.set(idx_quetions-1, {"idx":idx_quetions, "enable":true})
                         }
                     }
@@ -486,7 +492,7 @@ Item {
                         anchors.fill: parent
                         onClicked: {
                             q_answer = 1;
-                            result[idx_quetions]="a"
+                            result[idx_quetions-1]="a"
                             arr_idx.set(idx_quetions-1, {"idx":idx_quetions, "enable":true})
                         }
                     }
@@ -531,7 +537,7 @@ Item {
                         anchors.fill: parent
                         onClicked: {
                             q_answer = 4;
-                            result[idx_quetions]="d"
+                            result[idx_quetions-1]="d"
                             arr_idx.set(idx_quetions-1, {"idx":idx_quetions, "enable":true})
                         }
                     }

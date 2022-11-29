@@ -50,7 +50,7 @@ Item {
 
         Button {
             id: btnLogin
-            x: 368
+            x: 333
             y: 391
             text: qsTr("Login")
             onClicked: ()=>{
@@ -87,12 +87,22 @@ Item {
 
         Button {
             id: button1
-            x: 553
+            x: 581
             y: 391
             text: qsTr("Register")
             onClicked: ()=>{
-                main_stackview.push("qrc:/Pages/RegisterView.qml")
-            }
+                           main_stackview.push("qrc:/Pages/RegisterView.qml")
+                       }
+        }
+
+        Button {
+            id: button
+            x: 457
+            y: 391
+            text: qsTr("Face Login")
+            onClicked: ()=>{
+                           main_stackview.push("qrc:/Pages/FaceLoginView.qml")
+                       }
         }
     }
 

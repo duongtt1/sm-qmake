@@ -229,7 +229,15 @@ Item {
                 }
             }
         }
+
+        Connections {
+            target: StoreClass
+        }
+
         Component.onCompleted: {
+
+            StoreClass.setN_noti_assign(0);
+
             var xmlhttp = new XMLHttpRequest();
             var url = "http://localhost:4000/api/v1/task/" + User.icNumber;
             xmlhttp.onreadystatechange=function() {

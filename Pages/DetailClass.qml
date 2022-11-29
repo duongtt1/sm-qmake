@@ -7,12 +7,21 @@ Item {
     property string idClass: ""
     property string nameTeacher: ""
     property var classislive: false
-//    property var arr_members: []
+    //    property var arr_members: []
+    property int num_noti_assignments: 0
 
     Connections {
         target: DSocket
         onStartClassSignal: {
             classislive = true
+        }
+
+        onCloseClassSignal: {
+            classislive = false
+        }
+
+        onNewAssign: {
+            StoreClass.setN_noti_assign(StoreClass.n_noti_assign+1)
         }
     }
 
@@ -85,8 +94,8 @@ Item {
                 MouseArea{
                     anchors.fill: parent
                     onClicked: ()=>{
-                        loader_detail_class.source = "qrc:/Components/Members.qml"
-                    }
+                                   loader_detail_class.source = "qrc:/Components/Members.qml"
+                               }
                 }
             }
 
@@ -125,7 +134,7 @@ Item {
                     anchors.fill: parent
                     onClicked: ()=>{
                                    main_stackview.replace("qrc:/Pages/Dashboard.qml")
-                           }
+                               }
                 }
             }
 
@@ -161,11 +170,25 @@ Item {
                     horizontalAlignment: Text.AlignLeft
                 }
                 MouseArea{
-//                    width: 246
+                    //                    width: 246
                     anchors.fill: parent
                     onClicked: ()=>{
-                                    loader_detail_class.source = "qrc:/Components/Assignments.qml"
+                                   loader_detail_class.source = "qrc:/Components/Assignments.qml"
                                }
+
+               Label {
+                   id: num_noti_assign
+                   x: 198
+                   y: 8
+                   width: 40
+                   height: 22
+                   color: "#dc1212"
+                   text: StoreClass.n_noti_assign
+                   font.pointSize: 14
+                   visible: StoreClass.n_noti_assign !== 0 ? true : false
+                   horizontalAlignment: Text.AlignHCenter
+                   verticalAlignment: Text.AlignVCenter
+               }
                 }
             }
 
@@ -204,8 +227,8 @@ Item {
                 MouseArea{
                     anchors.fill: parent
                     onClicked: ()=>{
-                        loader_detail_class.source = "qrc:/Components/Lessons.qml"
-                    }
+                                   loader_detail_class.source = "qrc:/Components/Lessons.qml"
+                               }
                 }
             }
         }
@@ -280,23 +303,30 @@ Item {
             target: ActionClass
         }
 
+        Connections {
+            target: StoreClass
 
-            AnimatedImage {
-                id: icon_videocall
-                x: 914
-                y: 492
-                width: 100
-                height: 100
-                visible: classislive === true ? true : false
-                source: "../Resources/icon/icons8-live-video-on.gif"
-                fillMode: Image.PreserveAspectFit
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        ActionClass.openMeeting()
-                    }
+
+
+        }
+
+
+        AnimatedImage {
+            id: icon_videocall
+            x: 914
+            y: 492
+            width: 100
+            height: 100
+            visible: classislive === true ? true : false
+            source: "../Resources/icon/icons8-live-video-on.gif"
+            fillMode: Image.PreserveAspectFit
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    ActionClass.openMeeting()
                 }
             }
+        }
 
         Component.onCompleted: {
 
@@ -308,7 +338,7 @@ Item {
                 if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                     var obj = JSON.parse(xmlhttp.responseText);
                     if (obj["success"]){
-//                        console.log(obj["data"])
+                        //                        console.log(obj["data"])
                         nameClass = obj["data"][0]["nameClass"]
                         nameTeacher = obj["data"][0]["fullnameTeacher"]
                         idClass = obj["data"][0]["nameClass"]
