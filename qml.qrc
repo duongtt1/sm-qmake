@@ -81,7 +81,5 @@
         <file>ncnn/include/opencv.h</file>
         <file>ncnn/include/paramdict.h</file>
         <file>ncnn/include/platform.h</file>
-        <file>ncnn/lib/libncnn.a</file>
-
     </qresource>
 </RCC>

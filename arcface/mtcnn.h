@@ -6,8 +6,8 @@
 #include <string>
 #include <cstring>
 #include <algorithm>
-//#include <ncnn/net.h>
-#include "net.h"
+#include <ncnn/net.h>
+//#include "net.h"
 #include "base.h"
 
 #define DEBUG
@@ -17,9 +17,9 @@ using namespace std;
 class MtcnnDetector {
 public:
 #ifdef DEBUG
-    MtcnnDetector(string model_folder = "/home/duongtt/workplace/models");
+    MtcnnDetector(string model_folder = "./model");
 #else
-    MtcnnDetector(string model_folder = "/home/duongtt/workplace/models");
+    MtcnnDetector(string model_folder = "./model");
 #endif
 
     ~MtcnnDetector();

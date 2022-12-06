@@ -12,5 +12,5 @@ void Action::openPDF(){
 }
 
 void Action::openMeeting(){
-    system("chromium-browser --start-fullscreen --app=https://meet.jit.si/IT001");
+    system("chromium --start-fullscreen --app=https://meet.jit.si/IT001");
 }

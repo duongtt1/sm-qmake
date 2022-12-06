@@ -11,7 +11,7 @@
 #include <opencv4/opencv2/core.hpp>
 #include <opencv4/opencv2/opencv.hpp>
 #include <opencv4/opencv2/highgui.hpp>
-
+#include "FaceAuth/include/authFace.h"
 cv::Mat ncnn2cv(ncnn::Mat img);
 
 class VideoStreamer: public QObject
@@ -22,7 +22,12 @@ public:
     ~VideoStreamer();
     MtcnnDetector *ins_detector;
     vector<FaceInfo> ins_face_result{};
+    std::string pre_name = "";
+    std::string name="";
+    int count=0;
+    QString name_auth="";
 public:
+    Q_INVOKABLE QString getNameAuth();
     void streamVideo();
 
 public Q_SLOTS:
@@ -30,6 +35,7 @@ public Q_SLOTS:
     void closeVideoCamera();
 
 private:
+    AuthFace ins_AF;
     cv::Mat frame;
     cv::VideoCapture cap;
     QTimer tUpdate;

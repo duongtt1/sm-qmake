@@ -9,16 +9,26 @@ Item {
     width: 1024
     height: 600
 
+    property bool isLogin: false
+
     Connections {
         target: liveImageProvider
 
         onImageChanged: {
             opencvImage.reload()
         }
-        onAvatarChanged: {
-            img_avatar.reload()
-        }
+    }
 
+    Connections {
+        target: VideoStreamer
+
+        onLoginSuccess: {
+            console.log("login ok")
+            isLogin = true
+            VideoStreamer.closeVideoCamera()
+            txtUsername.text = VideoStreamer.getNameAuth()
+            btnLogin.text = "Go to Dashboard"
+        }
     }
 
     Image {
@@ -61,13 +71,13 @@ Item {
             border.width: 1
 
             Text {
-                id: element
+                id: btnLogin
                 x: 8
                 y: 0
                 width: 141
                 height: 36
                 color: "#0e88cf"
-                text: qsTr("Start Check")
+                text: qsTr("Start Login")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 font.pixelSize: 15
@@ -76,36 +86,16 @@ Item {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    VideoStreamer.openVideoCamera()
-                    opencvImage.visible = true
-                    img_avatar.visible = true
+                    if (isLogin){
+                         main_stackview.replace("qrc:/Pages/Dashboard.qml")
+                    }else{
+                        VideoStreamer.openVideoCamera()
+                        opencvImage.visible = true
+                    }
                 }
             }
         }
 
-        Image {
-            id: img_avatar
-            anchors.fill: parent
-            fillMode: Image.PreserveAspectFit
-            property bool counter_a: false
-            x: 224
-            y: 224
-            width: 224
-            height: 224
-            anchors.rightMargin: 143
-            anchors.bottomMargin: 373
-            anchors.leftMargin: 143
-            anchors.topMargin: 42
-            visible: false
-            source: "image://live/avatar"
-            asynchronous: false
-            cache: false
-
-            function reload() {
-                counter_a = !counter_a
-                source = "image://live/avatar?id=" + counter_a
-            }
-        }
 
         Rectangle {
             id: rectangle2
@@ -118,7 +108,7 @@ Item {
             border.color: "#0e88cf"
 
             TextInput {
-                id: textInput
+                id: txtUsername
                 x: 8
                 y: 8
                 width: 357
@@ -154,6 +144,10 @@ Item {
 
         MouseArea {
             anchors.fill: parent
+            onClicked: {
+//                main_stackview.push("qrc:/Pages/RegisterView.qml")
+                main_stackview.pop()
+            }
         }
         border.width: 1
         border.color: "#0e88cf"

@@ -2,8 +2,8 @@
 #define BASE_H
 #include <cmath>
 #include <cstring>
-//#include <ncnn/net.h>
-#include "net.h"
+#include <ncnn/net.h>
+//#include "net.h"
 
 typedef struct FaceInfo {
     float score;

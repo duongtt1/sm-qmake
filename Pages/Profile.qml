@@ -483,17 +483,7 @@ Item {
 
         }
 
-        Text {
-            id: element
-            x: 433
-            y: 374
-            width: 207
-            height: 75
-            text: qsTr("tét")
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: 20
-        }
+
 
 //        AnimatedImage {
 //            id: animatedImage

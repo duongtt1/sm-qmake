@@ -55,6 +55,7 @@ Item {
             text: qsTr("Login")
             onClicked: ()=>{
           var xmlhttp = new XMLHttpRequest();
+                           console.log(txtUsername.text)
           var url = "http://localhost:4000/api/v1/auth/login";
           xmlhttp.onreadystatechange=function() {
               if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {

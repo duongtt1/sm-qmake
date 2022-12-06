@@ -20,6 +20,13 @@ QMAKE_CXXFLAGS += -pthread -fopenmp
 #LIBS += -L"./3rdParty/qmqtt/src/mqtt"
 
 SOURCES += \
+        FaceAuth/src/TArcface.cpp \
+        FaceAuth/src/TBlur.cpp \
+        FaceAuth/src/TLive.cpp \
+        FaceAuth/src/TMtCNN.cpp \
+        FaceAuth/src/TRetina.cpp \
+        FaceAuth/src/TWarp.cpp \
+        FaceAuth/src/authFace.cpp \
         ImgProvider/opencvimageprovider.cpp \
         ImgProvider/videostreamer.cpp \
         action.cpp \
@@ -48,6 +55,13 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    FaceAuth/include/TArcface.h \
+    FaceAuth/include/TBlur.h \
+    FaceAuth/include/TLive.h \
+    FaceAuth/include/TMtCNN.h \
+    FaceAuth/include/TRetina.h \
+    FaceAuth/include/TWarp.h \
+    FaceAuth/include/authFace.h \
     ImgProvider/opencvimageprovider.h \
     ImgProvider/videostreamer.h \
     action.h \
@@ -107,15 +121,11 @@ DISTFILES += \
     ncnn/lib/libncnn.a
 
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/ncnn/lib/release/ -lncnn
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/ncnn/lib/debug/ -lncnn
-else:unix: LIBS += -L$$PWD/ncnn/lib/ -lncnn
 
-INCLUDEPATH += $$PWD/ncnn/include
-DEPENDPATH += $$PWD/ncnn/include
 
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/ncnn/lib/release/libncnn.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/ncnn/lib/debug/libncnn.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/ncnn/lib/release/ncnn.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/ncnn/lib/debug/ncnn.lib
-else:unix: PRE_TARGETDEPS += $$PWD/ncnn/lib/libncnn.a
+unix:!macx: LIBS += -L$$PWD/../../tencent/ncnn/build/install/lib/ -lncnn
+
+INCLUDEPATH += $$PWD/../../tencent/ncnn/build/install/include
+DEPENDPATH += $$PWD/../../tencent/ncnn/build/install/include
+
+unix:!macx: PRE_TARGETDEPS += $$PWD/../../tencent/ncnn/build/install/lib/libncnn.a

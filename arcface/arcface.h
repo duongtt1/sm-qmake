@@ -4,8 +4,8 @@
 #include <cmath>
 #include <vector>
 #include <string>
-//#include <ncnn/net.h>
-#include "net.h"
+#include <ncnn/net.h>
+//#include "net.h"
 #include "base.h"
 
 using namespace std;
@@ -18,7 +18,7 @@ float calcSimilar(std::vector<float> feature1, std::vector<float> feature2);
 class Arcface {
 
 public:
-    Arcface(string model_folder = "./models");
+    Arcface(string model_folder = "./model");
     ~Arcface();
     vector<float> getFeature(ncnn::Mat img);
 
