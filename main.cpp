@@ -11,6 +11,7 @@
 #include "dsocketclient.h"
 #include "ImgProvider/videostreamer.h"
 #include "ImgProvider/opencvimageprovider.h"
+#include "dtimer.h"
 
 int main(int argc, char *argv[])
 {
@@ -29,6 +30,7 @@ int main(int argc, char *argv[])
     DSocketClient obj_dsk;
     VideoStreamer videoStreamer;
     OpencvImageProvider *liveImageProvider(new OpencvImageProvider);
+    DTimer *d_timer = new DTimer();
 
     //! register engine cpp
     engine.rootContext()->setContextProperty("User", &obj_User);
@@ -37,6 +39,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("DSocket", &obj_dsk);
     engine.rootContext()->setContextProperty("VideoStreamer",&videoStreamer);
     engine.rootContext()->setContextProperty("liveImageProvider",liveImageProvider);
+    engine.rootContext()->setContextProperty("D_timer",d_timer);
     engine.addImageProvider("live",liveImageProvider);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));

@@ -21,13 +21,13 @@ cv::Mat ncnn2cv(ncnn::Mat img)
 
 VideoStreamer::VideoStreamer()
 {
-    this->ins_detector = new MtcnnDetector("./models");
+//    this->ins_detector = new MtcnnDetector("./models");
     connect(&tUpdate,&QTimer::timeout,this,&VideoStreamer::streamVideo);
 }
 
 VideoStreamer::~VideoStreamer()
 {
-    delete ins_detector;
+//    delete ins_detector;
     cap.release();
     tUpdate.stop();
 }
@@ -35,6 +35,7 @@ VideoStreamer::~VideoStreamer()
 void VideoStreamer::streamVideo()
 {
     cap>>frame;
+
     ncnn::Mat det1;
     this->name = ins_AF.startLoginWithFace(frame);
 
@@ -43,7 +44,7 @@ void VideoStreamer::streamVideo()
     }
     pre_name = name;
     qDebug() << count;
-    if (count == 50){
+    if (count == 20){
         this->name_auth = QString::fromUtf8(name.c_str());;
         Q_EMIT loginSuccess();
 

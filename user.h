@@ -18,6 +18,8 @@ class User : public QObject
     Q_PROPERTY(QString classUser READ classUser WRITE setClassUser NOTIFY classUserChanged)
     Q_PROPERTY(QString uni READ uni WRITE setUni NOTIFY uniChanged)
     Q_PROPERTY(QString country READ country WRITE setCountry NOTIFY countryChanged)
+    Q_PROPERTY(bool isLogin READ isLogin WRITE setIsLogin NOTIFY isLoginChanged)
+
 public:
     explicit User(QObject *parent = nullptr);
 //    User(QObject *parent);
@@ -55,6 +57,9 @@ public:
     Q_INVOKABLE QString country();
     Q_INVOKABLE void setCountry(const QString &data);
 
+    Q_INVOKABLE bool isLogin();
+    Q_INVOKABLE void setIsLogin(const bool &data);
+
 //    Q_INVOKABLE void setDataUser();
 
 Q_SIGNALS:
@@ -70,6 +75,7 @@ Q_SIGNALS:
     void classUserChanged();
     void uniChanged();
     void countryChanged();
+    void isLoginChanged();
 
 private:
     QString m_username;
@@ -83,6 +89,7 @@ private:
     QString m_classUser;
     QString m_uni;
     QString m_country;
+    bool m_isLogin;
 };
 
 #endif // USER_H

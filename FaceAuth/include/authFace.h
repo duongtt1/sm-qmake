@@ -13,7 +13,7 @@
 
 #define RETINA
 #define RECOGNIZE_FACE
-#define TEST_LIVING
+//#define TEST_LIVING
 //#define AUTO_FILL_DATABASE
 //#define BLUR_FILTER_STRANGER
 // some diagnostics
@@ -31,7 +31,7 @@ private:
     vector<cv::String> NameFaces;
     const int   MaxItemsDatabase = 2000;
     const int   MinHeightFace    = 90;
-    const float MinFaceThreshold = 0.50;
+    const float MinFaceThreshold = 0.30;    // default 0.50
     const float FaceLiving       = 0.93;
     const double MaxBlur         = -25.0;   //more positive = sharper image
     const double MaxAngle        = 10.0;

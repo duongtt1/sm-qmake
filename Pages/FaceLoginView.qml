@@ -87,6 +87,7 @@ Item {
                 anchors.fill: parent
                 onClicked: {
                     if (isLogin){
+                        console.log("debugggggggggggggggggggg")
                          main_stackview.replace("qrc:/Pages/Dashboard.qml")
                     }else{
                         VideoStreamer.openVideoCamera()
@@ -147,6 +148,7 @@ Item {
             onClicked: {
 //                main_stackview.push("qrc:/Pages/RegisterView.qml")
                 main_stackview.pop()
+//                VideoStreamer.closeVideoCamera()
             }
         }
         border.width: 1

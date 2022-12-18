@@ -10,6 +10,40 @@ Window {
     height: 600
     title: qsTr("CE-UIT")
 
+    property bool isLogin: false
+
+    Connections{
+        target: D_timer
+        onCheckFaceChanged: {
+            if (!ret){
+                popup.open()
+            }else{
+                if (popup.enabled){
+                    popup.close()
+                }
+            }
+
+            console.log(ret)
+        }
+    }
+
+    Popup {
+        id: popup
+        x: 256
+        y: 150
+        width: 512
+        height: 300
+        modal: true
+        focus: true
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+        contentData: Label {
+            text: "Please focus to class "
+            anchors.fill: parent.Center
+            font.pixelSize: 30
+            font.italic: true
+        }
+    }
+
     StackView {
         id: main_stackview
         anchors.fill: parent

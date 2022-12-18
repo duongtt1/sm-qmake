@@ -12,6 +12,7 @@
 #include <opencv4/opencv2/opencv.hpp>
 #include <opencv4/opencv2/highgui.hpp>
 #include "FaceAuth/include/authFace.h"
+
 cv::Mat ncnn2cv(ncnn::Mat img);
 
 class VideoStreamer: public QObject
@@ -20,7 +21,7 @@ class VideoStreamer: public QObject
 public:
     VideoStreamer();
     ~VideoStreamer();
-    MtcnnDetector *ins_detector;
+//    MtcnnDetector *ins_detector;
     vector<FaceInfo> ins_face_result{};
     std::string pre_name = "";
     std::string name="";

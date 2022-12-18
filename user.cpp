@@ -6,6 +6,15 @@ User::User(QObject *parent):QObject(parent)
 
 }
 
+bool User::isLogin(){
+    return  this->m_isLogin;
+}
+
+void User::setIsLogin(const bool &data){
+    this->m_isLogin = data;
+    Q_EMIT isLoginChanged();
+}
+
 QString User::username(){
     return this->m_username;
 }

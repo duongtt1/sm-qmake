@@ -34,6 +34,7 @@ SOURCES += \
         arcface/base.cpp \
         arcface/mtcnn.cpp \
         dsocketclient.cpp \
+        dtimer.cpp \
         main.cpp \
         storeclass.cpp \
         user.cpp
@@ -69,6 +70,7 @@ HEADERS += \
     arcface/base.h \
     arcface/mtcnn.h \
     dsocketclient.h \
+    dtimer.h \
     ncnn/include/benchmark.h \
     ncnn/include/blob.h \
     ncnn/include/cpu.h \

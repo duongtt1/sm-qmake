@@ -5,9 +5,9 @@ Item {
 
     Connections {
         target: DSocket
-        onHelloSignal: {
-            console.log("qml: socket hello")
-        }
+//        onHelloSignal: {
+//            console.log("qml: socket hello")
+//        }
     }
 
     Rectangle {
@@ -83,7 +83,7 @@ Item {
                             var obj = JSON.parse(xmlhttp.responseText);
                             if (obj["success"]){
                                 arr_notifications = obj["data"]
-                                console.log(arr_notifications[0]["url_icon"])
+//                                console.log(arr_notifications[0]["url_icon"])
                             }
                         }
                     }
