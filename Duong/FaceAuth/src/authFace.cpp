@@ -1,4 +1,4 @@
-#include "FaceAuth/include/authFace.h"
+#include "Duong/FaceAuth/include/authFace.h"
 
 inline float CosineDistance(const cv::Mat &v1, const cv::Mat &v2)
 {

@@ -190,7 +190,7 @@ Rectangle {
 
         Component.onCompleted: {
             var xmlhttp2 = new XMLHttpRequest();
-            var url = "http://localhost:4000/api/v1/schedule/" + User.icNumber;
+            var url = "https://back-end-test.onrender.com/api/v1/schedule/" + User.icNumber;
             console.log(url)
             xmlhttp2.onreadystatechange=function() {
                 if (xmlhttp2.readyState === 4 && xmlhttp2.status === 200) {

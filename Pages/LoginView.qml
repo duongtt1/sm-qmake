@@ -60,7 +60,7 @@ Item {
             onClicked: ()=>{
           var xmlhttp = new XMLHttpRequest();
                            console.log(txtUsername.text)
-          var url = "http://localhost:4000/api/v1/auth/login";
+          var url = "https://back-end-test.onrender.com/api/v1/auth/login";
           xmlhttp.onreadystatechange=function() {
               if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                   var obj = JSON.parse(xmlhttp.responseText);
@@ -77,7 +77,7 @@ Item {
                         User.setCountry(obj["data"]["country"])
                         User.setUni(obj["data"]["uni"])
                         User.setIsLogin(true);
-                      D_timer.startCheckFace();
+                        D_timer.startCheckFace();
                         main_stackview.replace("qrc:/Pages/Dashboard.qml")
                   }
               }

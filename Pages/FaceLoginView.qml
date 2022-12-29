@@ -87,7 +87,6 @@ Item {
                 anchors.fill: parent
                 onClicked: {
                     if (isLogin){
-                        console.log("debugggggggggggggggggggg")
                          main_stackview.replace("qrc:/Pages/Dashboard.qml")
                     }else{
                         VideoStreamer.openVideoCamera()

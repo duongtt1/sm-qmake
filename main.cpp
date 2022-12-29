@@ -5,13 +5,13 @@
 //#include <QtWebView/QtWebView>
 #include <QtWebEngine/qtwebengineglobal.h>
 
-#include "action.h"
-#include "user.h"
-#include "storeclass.h"
-#include "dsocketclient.h"
-#include "ImgProvider/videostreamer.h"
-#include "ImgProvider/opencvimageprovider.h"
-#include "dtimer.h"
+#include "Duong/action.h"
+#include "Duong/user.h"
+#include "Duong/storeclass.h"
+#include "Duong/dsocketclient.h"
+#include "Duong/ImgProvider/videostreamer.h"
+#include "Duong/ImgProvider/opencvimageprovider.h"
+#include "Duong/dtimer.h"
 
 int main(int argc, char *argv[])
 {

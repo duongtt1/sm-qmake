@@ -239,7 +239,7 @@ Item {
             StoreClass.setN_noti_assign(0);
 
             var xmlhttp = new XMLHttpRequest();
-            var url = "http://localhost:4000/api/v1/task/" + User.icNumber;
+            var url = "https://back-end-test.onrender.com/api/v1/task/" + User.icNumber;
             xmlhttp.onreadystatechange=function() {
                 if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                     var obj = JSON.parse(xmlhttp.responseText);

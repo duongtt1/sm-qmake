@@ -6,12 +6,12 @@
 #include <QImage>
 #include <iostream>
 #include <vector>
-#include <arcface/arcface.h>
-#include <arcface/mtcnn.h>
+#include <Duong/arcface/arcface.h>
+#include <Duong/arcface/mtcnn.h>
 #include <opencv4/opencv2/core.hpp>
 #include <opencv4/opencv2/opencv.hpp>
 #include <opencv4/opencv2/highgui.hpp>
-#include "FaceAuth/include/authFace.h"
+#include "Duong/FaceAuth/include/authFace.h"
 
 cv::Mat ncnn2cv(ncnn::Mat img);
 

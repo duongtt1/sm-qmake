@@ -83,47 +83,6 @@ Item {
                 }
             }
 
-//            Rectangle {
-//                id: div_setting
-//                visible: true
-//                x: -253
-//                y: 399
-//                width: 246
-//                height: 38
-//                color: "#ffffff"
-//                radius: 10
-//                Image {
-//                    id: icon_setting
-//                    x: 0
-//                    y: 3
-//                    width: 49
-//                    height: 31
-//                    sourceSize.height: 112
-//                    sourceSize.width: 112
-//                    source: "qrc:/Resources/icon/settings.png"
-//                    fillMode: Image.PreserveAspectFit
-//                }
-
-//                Text {
-//                    id: label_setting
-//                    x: 55
-//                    y: 3
-//                    width: 163
-//                    height: 31
-//                    text: qsTr("Settings")
-//                    verticalAlignment: Text.AlignVCenter
-//                    font.pixelSize: 20
-//                    horizontalAlignment: Text.AlignLeft
-//                }
-//                MouseArea{
-//                    anchors.fill: parent
-//                    onClicked: ()=>{
-//                                   loader_main_view.source = "qrc:/Pages/Setting.qml"
-//                                   console.log("settings")
-//                               }
-//                }
-//            }
-
             Rectangle {
                 id: dev_noti
                 x: -253

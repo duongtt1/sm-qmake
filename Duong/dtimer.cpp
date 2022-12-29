@@ -9,7 +9,7 @@ DTimer::DTimer(QObject *parent) : QObject(parent)
 }
 
 void DTimer::startCheckFace(){
-    faceCheckTimer->start(20000);
+    faceCheckTimer->start(10000);
 }
 
 bool DTimer::checkFaceLogin(){
@@ -19,7 +19,7 @@ bool DTimer::checkFaceLogin(){
     int count = 0;
     bool ret=false;
     int count_check = 0;
-    while (count_check < 10) {
+    while (count_check < 5) {
         name = authFace->startLoginWithFace(frame);
         if (name == "Duong"){
             qDebug() << "==> Duong";

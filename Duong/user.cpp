@@ -1,6 +1,6 @@
 #include "user.h"
 #include <QDebug>
-//#include <opencv4/opencv2/core.hpp>
+
 User::User(QObject *parent):QObject(parent)
 {
 

@@ -69,17 +69,5 @@
         <file>Resources/icon/pdf.png</file>
         <file>Resources/icon/icons8-live-video-on.gif</file>
         <file>Pages/FaceLoginView.qml</file>
-        <file>ncnn/include/benchmark.h</file>
-        <file>ncnn/include/blob.h</file>
-        <file>ncnn/include/cpu.h</file>
-        <file>ncnn/include/layer.h</file>
-        <file>ncnn/include/layer_type.h</file>
-        <file>ncnn/include/layer_type_enum.h</file>
-        <file>ncnn/include/mat.h</file>
-        <file>ncnn/include/modelbin.h</file>
-        <file>ncnn/include/net.h</file>
-        <file>ncnn/include/opencv.h</file>
-        <file>ncnn/include/paramdict.h</file>
-        <file>ncnn/include/platform.h</file>
     </qresource>
 </RCC>

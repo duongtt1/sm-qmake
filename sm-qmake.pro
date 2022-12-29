@@ -20,24 +20,24 @@ QMAKE_CXXFLAGS += -pthread -fopenmp
 #LIBS += -L"./3rdParty/qmqtt/src/mqtt"
 
 SOURCES += \
-        FaceAuth/src/TArcface.cpp \
-        FaceAuth/src/TBlur.cpp \
-        FaceAuth/src/TLive.cpp \
-        FaceAuth/src/TMtCNN.cpp \
-        FaceAuth/src/TRetina.cpp \
-        FaceAuth/src/TWarp.cpp \
-        FaceAuth/src/authFace.cpp \
-        ImgProvider/opencvimageprovider.cpp \
-        ImgProvider/videostreamer.cpp \
-        action.cpp \
-        arcface/arcface.cpp \
-        arcface/base.cpp \
-        arcface/mtcnn.cpp \
-        dsocketclient.cpp \
-        dtimer.cpp \
+        Duong/FaceAuth/src/TArcface.cpp \
+        Duong/FaceAuth/src/TBlur.cpp \
+        Duong/FaceAuth/src/TLive.cpp \
+        Duong/FaceAuth/src/TMtCNN.cpp \
+        Duong/FaceAuth/src/TRetina.cpp \
+        Duong/FaceAuth/src/TWarp.cpp \
+        Duong/FaceAuth/src/authFace.cpp \
+        Duong/ImgProvider/opencvimageprovider.cpp \
+        Duong/ImgProvider/videostreamer.cpp \
+        Duong/action.cpp \
+        Duong/arcface/arcface.cpp \
+        Duong/arcface/base.cpp \
+        Duong/arcface/mtcnn.cpp \
+        Duong/dsocketclient.cpp \
+        Duong/dtimer.cpp \
         main.cpp \
-        storeclass.cpp \
-        user.cpp
+        Duong/storeclass.cpp \
+        Duong/user.cpp
 
 RESOURCES += qml.qrc
 
@@ -56,35 +56,23 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    FaceAuth/include/TArcface.h \
-    FaceAuth/include/TBlur.h \
-    FaceAuth/include/TLive.h \
-    FaceAuth/include/TMtCNN.h \
-    FaceAuth/include/TRetina.h \
-    FaceAuth/include/TWarp.h \
-    FaceAuth/include/authFace.h \
-    ImgProvider/opencvimageprovider.h \
-    ImgProvider/videostreamer.h \
-    action.h \
-    arcface/arcface.h \
-    arcface/base.h \
-    arcface/mtcnn.h \
-    dsocketclient.h \
-    dtimer.h \
-    ncnn/include/benchmark.h \
-    ncnn/include/blob.h \
-    ncnn/include/cpu.h \
-    ncnn/include/layer.h \
-    ncnn/include/layer_type.h \
-    ncnn/include/layer_type_enum.h \
-    ncnn/include/mat.h \
-    ncnn/include/modelbin.h \
-    ncnn/include/net.h \
-    ncnn/include/opencv.h \
-    ncnn/include/paramdict.h \
-    ncnn/include/platform.h \
-    storeclass.h \
-    user.h
+    Duong/FaceAuth/include/TArcface.h \
+    Duong/FaceAuth/include/TBlur.h \
+    Duong/FaceAuth/include/TLive.h \
+    Duong/FaceAuth/include/TMtCNN.h \
+    Duong/FaceAuth/include/TRetina.h \
+    Duong/FaceAuth/include/TWarp.h \
+    Duong/FaceAuth/include/authFace.h \
+    Duong/ImgProvider/opencvimageprovider.h \
+    Duong/ImgProvider/videostreamer.h \
+    Duong/action.h \
+    Duong/arcface/arcface.h \
+    Duong/arcface/base.h \
+    Duong/arcface/mtcnn.h \
+    Duong/dsocketclient.h \
+    Duong/dtimer.h \
+    Duong/storeclass.h \
+    Duong/user.h
 
 #DISTFILES +=
 

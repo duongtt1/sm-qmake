@@ -39,9 +39,9 @@ QImage OpencvImageProvider::requestAvatar(const QString &id, QSize *size, const 
 
 void OpencvImageProvider::updateImage(const QImage &image)
 {
-    qDebug() << "update image";
+//    qDebug() << "update image";
     if(!image.isNull() && this->image != image) {
-        qDebug() << "imageChanged";
+//        qDebug() << "imageChanged";
         this->image = image;
         Q_EMIT imageChanged();
     }
@@ -49,9 +49,9 @@ void OpencvImageProvider::updateImage(const QImage &image)
 
 void OpencvImageProvider::updateAvatar(const QImage &p_avatar)
 {
-    qDebug() << "update image";
+//    qDebug() << "update image";
     if(!avatar.isNull() && this->avatar != p_avatar) {
-        qDebug() << "updateAvatar";
+//        qDebug() << "updateAvatar";
         this->avatar = p_avatar;
         Q_EMIT avatarChanged();
     }
