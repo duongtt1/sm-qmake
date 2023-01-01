@@ -6,6 +6,16 @@
 
 class User : public QObject
 {
+private:
+    explicit User(QObject *parent = nullptr);
+    static User* instance;
+public:
+    static User* getInstance(){
+        if (instance == nullptr){
+            instance = new User();
+        }
+        return instance;
+    }
     Q_OBJECT
     Q_PROPERTY(QString username READ username WRITE setUsername NOTIFY usernameChanged)
     Q_PROPERTY(QString fullname READ fullname WRITE setFullname NOTIFY fullnameChanged)
@@ -21,7 +31,6 @@ class User : public QObject
     Q_PROPERTY(bool isLogin READ isLogin WRITE setIsLogin NOTIFY isLoginChanged)
 
 public:
-    explicit User(QObject *parent = nullptr);
 //    User(QObject *parent);
 
     Q_INVOKABLE QString username();
@@ -91,5 +100,6 @@ private:
     QString m_country;
     bool m_isLogin;
 };
+
 
 #endif // USER_H

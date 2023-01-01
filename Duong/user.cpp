@@ -1,6 +1,8 @@
 #include "user.h"
 #include <QDebug>
 
+User* User::instance = nullptr;
+
 User::User(QObject *parent):QObject(parent)
 {
 

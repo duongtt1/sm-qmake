@@ -20,7 +20,7 @@ public:
     Q_INVOKABLE void startCheckFace();
     Q_INVOKABLE void stopCheckFace();
 Q_SLOT
-    bool checkFaceLogin();
+    void checkFaceLogin();
     DTimer(QObject *parent = nullptr);
     ~DTimer();
 private:

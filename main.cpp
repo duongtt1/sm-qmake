@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     //! init cpp object
-    User obj_User;
+    User* obj_User = User::getInstance();
     StoreClass obj_store_class;
     Action obj_action;
     DSocketClient obj_dsk;
@@ -32,8 +32,8 @@ int main(int argc, char *argv[])
     OpencvImageProvider *liveImageProvider(new OpencvImageProvider);
     DTimer *d_timer = new DTimer();
 
-    //! register engine cpp
-    engine.rootContext()->setContextProperty("User", &obj_User);
+    // register engine cpp
+    engine.rootContext()->setContextProperty("User", obj_User);
     engine.rootContext()->setContextProperty("StoreClass", &obj_store_class);
     engine.rootContext()->setContextProperty("ActionClass", &obj_action);
     engine.rootContext()->setContextProperty("DSocket", &obj_dsk);

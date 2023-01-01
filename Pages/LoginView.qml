@@ -76,6 +76,7 @@ Item {
                         User.setClassUser(obj["data"]["class"])
                         User.setCountry(obj["data"]["country"])
                         User.setUni(obj["data"]["uni"])
+                        User.setUsername(obj["data"]["username"])
                         User.setIsLogin(true);
                         D_timer.startCheckFace();
                         main_stackview.replace("qrc:/Pages/Dashboard.qml")
