@@ -65,3 +65,13 @@ mkdir -p build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DNCNN_VULKAN=ON -DNCNN_BUILD_EXAMPLES=ON ..
 make -j$(nproc)
+
+# build lib socketio
+cd ~
+git clone --recurse-submodules https://github.com/socketio/socket.io-client-cpp.git
+cd socket.io-client-cpp
+cmake ./
+sudo make install
+
+
+
