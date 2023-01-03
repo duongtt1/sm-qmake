@@ -252,8 +252,8 @@ Item {
                         var obj = JSON.parse(xmlhttp.responseText);
                         if (obj["success"]){
                             arr_classrooms = obj["data"]
-                            arr_classrooms_hide = arr_classrooms.filter(obj => obj["hided"] === true)
-                            arr_classrooms_unhide = arr_classrooms.filter(obj => obj["hided"] === false)
+                           arr_classrooms_hide = arr_classrooms.filter(function (obj) { return obj["hided"] === true })
+                           arr_classrooms_unhide = arr_classrooms.filter(function (obj) { return obj["hided"] === false})
                             arr_classrooms = arr_classrooms_unhide
 
                         }

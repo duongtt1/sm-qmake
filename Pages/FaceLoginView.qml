@@ -1,9 +1,9 @@
 import QtQuick 2.0
-import QtQuick 2.12
-import QtQuick.Window 2.12
-import QtQuick.Controls 2.12
-import QtMultimedia 5.0
-import QtQuick.Extras 1.4
+import QtQuick 2.1
+import QtQuick.Window 2.1
+import QtQuick.Controls 2.1
+//import QtMultimedia 5.0
+//import QtQuick.Extras 1.4
 
 Item {
     width: 1024

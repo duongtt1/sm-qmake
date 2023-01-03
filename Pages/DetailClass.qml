@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.12
+import QtQuick.Controls 2.1
 import QtQuick.Controls.Material 2.0
 
 Item {
@@ -93,7 +93,7 @@ Item {
                 }
                 MouseArea{
                     anchors.fill: parent
-                    onClicked: ()=>{
+                    onClicked: {
                                    loader_detail_class.source = "qrc:/Components/Members.qml"
                                }
                 }
@@ -132,7 +132,7 @@ Item {
                 }
                 MouseArea{
                     anchors.fill: parent
-                    onClicked: ()=>{
+                    onClicked: {
                                    main_stackview.replace("qrc:/Pages/Dashboard.qml")
                                }
                 }
@@ -172,7 +172,7 @@ Item {
                 MouseArea{
                     //                    width: 246
                     anchors.fill: parent
-                    onClicked: ()=>{
+                    onClicked: {
                                    loader_detail_class.source = "qrc:/Components/Assignments.qml"
                                }
 
@@ -226,7 +226,7 @@ Item {
                 }
                 MouseArea{
                     anchors.fill: parent
-                    onClicked: ()=>{
+                    onClicked: {
                                    loader_detail_class.source = "qrc:/Components/Lessons.qml"
                                }
                 }

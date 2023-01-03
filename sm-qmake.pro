@@ -1,4 +1,4 @@
-QT += quick  qml webengine
+QT += quick  qml
 CONFIG += c++11
 CONFIG += no_keywords
 #CONFIG += fopenmp pthread

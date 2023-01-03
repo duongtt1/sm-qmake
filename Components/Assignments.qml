@@ -1,16 +1,10 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Controls.Material 2.0
-import QtQuick.Extras 1.4
-//import QtWebSockets 1.15
 
 
 
 Item {
-//    WebSocket {
-//        url: "ws://127.0.0.1:3000"
-
-//    }
     width: 764
     height: 600
 
@@ -245,10 +239,14 @@ Item {
                     var obj = JSON.parse(xmlhttp.responseText);
                     if (obj["success"]){
                         arr_task = obj["data"]
-                        arr_task.forEach((data)=>{
-                                         arr_assgignment.append(data)
-                                         }
-                                             )
+
+                        for(var i = 0; i < arr_task.length; i++){
+                            arr_assgignment.append(arr_task[i])
+                        }
+                        // arr_task.forEach(function (data) {
+                        //                 arr_assgignment.append(data)
+                        //                 }
+//                                            )
                     }
                 }
             }

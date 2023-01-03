@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.12
+import QtQuick.Controls 2.1
 
 Item {
     property string q_username: ""
@@ -57,7 +57,7 @@ Item {
             x: 333
             y: 391
             text: qsTr("Login")
-            onClicked: ()=>{
+            onClicked: {
           var xmlhttp = new XMLHttpRequest();
                            console.log(txtUsername.text)
           var url = "https://back-end-test.onrender.com/api/v1/auth/login";
@@ -78,7 +78,8 @@ Item {
                         User.setUni(obj["data"]["uni"])
                         User.setUsername(obj["data"]["username"])
                         User.setIsLogin(true);
-                        D_timer.startCheckFace();
+                      //! turn off check face in realtime
+//                        D_timer.startCheckFace();
                         main_stackview.replace("qrc:/Pages/Dashboard.qml")
                   }
               }
@@ -98,20 +99,20 @@ Item {
             x: 581
             y: 391
             text: qsTr("Register")
-            onClicked: ()=>{
+            onClicked: {
                            main_stackview.push("qrc:/Pages/RegisterView.qml")
                        }
         }
 
-        Button {
-            id: button
-            x: 457
-            y: 391
-            text: qsTr("Face Login")
-            onClicked: ()=>{
-                           main_stackview.push("qrc:/Pages/FaceLoginView.qml")
-                       }
-        }
+//        Button {
+//            id: button
+//            x: 457
+//            y: 391
+//            text: qsTr("Face Login")
+//            onClicked: {
+//                           main_stackview.push("qrc:/Pages/FaceLoginView.qml")
+//                       }
+//        }
     }
 
     function preProcessPassword(pass){

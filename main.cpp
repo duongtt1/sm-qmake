@@ -3,7 +3,7 @@
 #include <QQmlContext>
 #include <QIcon>
 //#include <QtWebView/QtWebView>
-#include <QtWebEngine/qtwebengineglobal.h>
+//#include <QtWebEngine/qtwebengineglobal.h>
 
 #include "Duong/action.h"
 #include "Duong/user.h"
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 
     QGuiApplication app(argc, argv);
-    QtWebEngine::initialize();
+//    QtWebEngine::initialize();
     app.setWindowIcon(QIcon(":/Resources/icon/school.png"));
     QQmlApplicationEngine engine;
 

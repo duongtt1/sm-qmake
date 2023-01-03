@@ -493,7 +493,7 @@ Item {
 //            height: 100
 //            source: "../../../../Users/duong/Pictures/66088771_731533417280302_4745012111216738304_n.jpg"
 //        }
-        Component.onCompleted: ()=>{
+        Component.onCompleted: {
             id_account = User.telephone
             q_telephone = User.telephone
             q_avatar = User.avatar

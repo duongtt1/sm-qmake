@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.12
+import QtQuick.Controls 2.1
 
 Item {
 
@@ -74,10 +74,10 @@ Item {
                 }
                 MouseArea{
                     anchors.fill: parent
-                    onClicked: ()=>{
+                    onClicked: {
                                    loader_main_view.source = "qrc:/Pages/Classroom.qml"
 
-//                                   loader_main_view.sourceComponent = classroom_component
+//                                  loader_main_view.sourceComponent = classroom_component
                                    console.log("Classrooms")
                                }
                 }
@@ -117,7 +117,7 @@ Item {
 
                 MouseArea{
                     anchors.fill: parent
-                    onClicked: ()=>{
+                    onClicked: {
                                    loader_main_view.source = "qrc:/Pages/Noti.qml"
                                    console.log("Notifications")
                                }
@@ -158,7 +158,7 @@ Item {
                 }
                 MouseArea{
                     anchors.fill: parent
-                    onClicked: ()=>{
+                    onClicked: {
                                    main_stackview.replace("qrc:/Pages/LoginView.qml")
                                }
                 }
@@ -197,7 +197,7 @@ Item {
                 }
                 MouseArea{
                     anchors.fill: parent
-                    onClicked: ()=>{
+                    onClicked: {
                                     loader_main_view.source = "qrc:/Pages/Schedule.qml"
                                    console.log("Schedule")
                                }
@@ -238,7 +238,7 @@ Item {
                 }
                 MouseArea{
                     anchors.fill: parent
-                    onClicked: ()=>{
+                    onClicked: {
                                    loader_main_view.source = "qrc:/Pages/Profile.qml"
                                    console.log("Profile")
                                }

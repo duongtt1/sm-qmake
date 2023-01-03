@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.12
+import QtQuick.Controls 2.1
 
 Item {
     Rectangle {
@@ -52,7 +52,7 @@ Item {
             width: 179
             height: 40
             text: qsTr("Register")
-            onClicked: ()=>{
+            onClicked: {
                            console.log("bth clicked")
                        }
         }

@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Controls.Material 2.0
 //import QtWebEngine 1.0
-import QtWebView 1.1
+//import QtWebView 1.1
 
 Item {
     width: 764
