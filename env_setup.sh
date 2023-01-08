@@ -32,14 +32,7 @@ cd ~/opencv_build/opencv
 mkdir build
 cd build
 
-cmake   -D CMAKE_BUILD_TYPE=RELEASE \
-        -D CMAKE_INSTALL_PREFIX=/usr/local \
-        -D INSTALL_C_EXAMPLES=ON \
-        -D INSTALL_PYTHON_EXAMPLES=ON \
-        -D OPENCV_GENERATE_PKGCONFIG=ON \
-        -D OPENCV_EXTRA_MODULES_PATH=~/opencv_build/opencv_contrib/modules \
-        -D BUILD_EXAMPLES=ON \ 
-        ..
+cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -DINSTALL_C_EXAMPLES=ON -DINSTALL_PYTHON_EXAMPLES=ON -DOPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_EXTRA_MODULES_PATH=~/opencv_build/opencv_contrib/modules -DBUILD_EXAMPLES=ON ..
 
 sudo make -j$(nproc)
 sudo make install
@@ -49,18 +42,14 @@ pkg-config --modversion opencv4
 # 4.5.3
 ###########
 
-
 # setup build NCNN
 cd ~/
 mkdir tencent
 cd tencent/
+cd ncnn
 git clone https://github.com/Tencent/ncnn.git
 git submodule update --init
 sudo apt install build-essential git cmake libprotobuf-dev protobuf-compiler libvulkan-dev vulkan-utils
-wget https://sdk.lunarg.com/sdk/download/1.2.189.0/linux/vulkansdk-linux-x86_64-1.2.189.0.tar.gz?Human=true -O vulkansdk-linux-x86_64-1.2.189.0.tar.gz
-tar -xf vulkansdk-linux-x86_64-1.2.189.0.tar.gz
-export VULKAN_SDK=$(pwd)/1.2.189.0/x86_64
-cd ncnn
 mkdir -p build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DNCNN_VULKAN=ON -DNCNN_BUILD_EXAMPLES=ON ..
@@ -75,3 +64,23 @@ sudo make install
 
 
 
+# fix bug glslang reuired cmake > 3.14
+sudo apt-get remove cmake
+sudo apt-get install build-essential libssl-dev
+cd ~
+wget https://github.com/Kitware/CMake/releases/download/v3.20.0/cmake-3.20.0.tar.gz
+tar -zxvf cmake-3.20.0.tar.gz
+cd cmake-3.20.0
+./bootstrap
+sudo make
+sudo make install
+cmake --version 
+# version 3.20.0
+
+# run source 
+cd ~ 
+mkdir workplace
+cd workplace
+git clone https://github.com/duongtt1/sm-qmake.git
+cd sm-qmake
+# open Qt creator => File => Open File or project => pick file .pro in source sm-qmake
