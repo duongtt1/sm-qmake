@@ -17,9 +17,9 @@ using namespace std;
 class MtcnnDetector {
 public:
 #ifdef DEBUG
-    MtcnnDetector(string model_folder = "./model");
+    MtcnnDetector(string model_folder = "../sm-qmake/Model_debug/model");
 #else
-    MtcnnDetector(string model_folder = "./model");
+    MtcnnDetector(string model_folder = "../sm-qmake/Model_debug/model");
 #endif
 
     ~MtcnnDetector();

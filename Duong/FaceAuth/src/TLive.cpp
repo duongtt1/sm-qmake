@@ -37,8 +37,8 @@ void TLive::LoadModel(void)
     model_num_ = static_cast<int>(configs_.size());
     for(int i=0; i<model_num_; ++i){
         ncnn::Net *net = new ncnn::Net();
-        std::string param=  "./models/live/" + configs_[i].name + ".param";
-        std::string model = "./models/live/"  + configs_[i].name + ".bin";
+        std::string param=  "../sm-qmake/Model_debug/models/live/" + configs_[i].name + ".param";
+        std::string model = "../sm-qmake/Model_debug/models/live/"  + configs_[i].name + ".bin";
         net->load_param(param.c_str());
         net->load_model(model.c_str());
 

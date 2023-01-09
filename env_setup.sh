@@ -52,8 +52,10 @@ git submodule update --init
 sudo apt install build-essential git cmake libprotobuf-dev protobuf-compiler libvulkan-dev vulkan-utils
 mkdir -p build
 cd build
+# if Bug unreference to vulkan lib ==> change -DNCNN_VULKAN=ON ==> -DNCNN_VULKAN=OFF
 cmake -DCMAKE_BUILD_TYPE=Release -DNCNN_VULKAN=ON -DNCNN_BUILD_EXAMPLES=ON ..
 make -j$(nproc)
+sudo make install
 
 # build lib socketio
 cd ~
@@ -84,3 +86,4 @@ cd workplace
 git clone https://github.com/duongtt1/sm-qmake.git
 cd sm-qmake
 # open Qt creator => File => Open File or project => pick file .pro in source sm-qmake
+# build ==> copy all folder in ./Model_debug replace to 

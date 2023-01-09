@@ -18,7 +18,7 @@ float calcSimilar(std::vector<float> feature1, std::vector<float> feature2);
 class Arcface {
 
 public:
-    Arcface(string model_folder = "./model");
+    Arcface(string model_folder = "../sm-qmake/Model_debug/model");
     ~Arcface();
     vector<float> getFeature(ncnn::Mat img);
 
