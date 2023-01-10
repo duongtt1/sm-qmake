@@ -220,8 +220,8 @@ TRetina::TRetina(int Width,int Height,bool UseVulkan)
     // the ncnn model https://github.com/nihui/ncnn-assets/tree/master/models
     //     retinaface.load_param("retinaface-R50.param");
     //     retinaface.load_model("retinaface-R50.bin");
-    retinaface.load_param("./models/retina/mnet.25-opt.param");
-    retinaface.load_model("./models/retina/mnet.25-opt.bin");
+    retinaface.load_param("../sm-qmake/Model_debug/models/retina/mnet.25-opt.param");
+    retinaface.load_model("../sm-qmake/Model_debug/models/retina/mnet.25-opt.bin");
 }
 //----------------------------------------------------------------------------------------
 TRetina::~TRetina()

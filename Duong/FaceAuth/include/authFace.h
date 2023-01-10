@@ -51,7 +51,7 @@ private:
     cv::Mat faces;
     std::vector<FaceObject> Faces;
     vector<cv::Mat> fc1;
-    string pattern_jpg = "./img/*.jpg";
+    string pattern_jpg = "../sm-qmake/Model_debug/img/*.jpg";
     cv::String NewItemName;
     size_t FaceCnt;
     //the networks
